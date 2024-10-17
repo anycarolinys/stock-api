@@ -4,13 +4,16 @@ import { SaleProductService } from "../../services/product/SaleProductService";
 
 class SaleProductController {
   async handle(request: Request, response: Response) {
-    const product_id = request.query.product_id as string;
-    const { amount }: SaleProductRequest = request.body;
+    const { user_id, product_id, quantity, name, cpf, email }: SaleProductRequest = request.body;
     const saleProductService = new SaleProductService();
 
     const saleProduct = await saleProductService.execute({
       product_id,
-      amount,
+      quantity,
+      user_id,
+      cpf,
+      email,
+      name
     });
     return response.json(saleProduct);
   }

@@ -14,10 +14,13 @@ model User {
   id       String @id @default(uuid())
   name     String
   email    String
+  topico   String
   password String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
+
+  sales Sale[] // Relacionamento com vendas
 
   @@map("users")
 }
@@ -45,6 +48,7 @@ model Product {
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
   items       Item[]
+  sales       Sale[] // Relacionamento com vendas
 
   @@map("products")
 }
@@ -59,4 +63,23 @@ model Item {
   product_id String
 
   @@map("items")
+}
+
+model Sale {
+  id          String    @id @default(uuid())
+  name        String    // Nome do cliente
+  cpf         String    // CPF do cliente
+  email       String    // Email do cliente
+  quantity    Int       // Quantidade do produto vendido
+  total_price String    // Preço total calculado da venda
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @default(now())
+
+  product     Product   @relation(fields: [product_id], references: [id])
+  product_id  String    // Produto que está sendo vendido
+
+  user        User      @relation(fields: [user_id], references: [id])
+  user_id     String    // Usuário que está fazendo a venda
+
+  @@map("sales")
 }

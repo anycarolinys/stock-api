@@ -55,7 +55,7 @@ router.delete(
   isAuthenticated,
   new DeleteProductController().handle
 );
-router.put(
+router.post(
   "/product/sale",
   isAuthenticated,
   new SaleProductController().handle
