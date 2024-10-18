@@ -13,12 +13,15 @@ import { EditProductController } from "./controllers/product/EditProductControll
 import { ListProductsController } from "./controllers/product/ListProductsController";
 import { DeleteProductController } from "./controllers/product/DeleteProductController";
 import { SaleProductController } from "./controllers/product/SaleProductController";
+import { ListUsersController } from "./controllers/user/ListUsersController";
 
 const router = Router();
 
 /* USER */
 router.post("/user", new CreateUserController().handle);
 router.post("/auth", new AuthUserController().handle);
+
+router.get("/user", isAuthenticated, new ListUsersController().handle)
 
 /* CATEGORY */
 router.post(
