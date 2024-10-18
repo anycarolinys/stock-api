@@ -71,7 +71,7 @@ class SaleProductService {
       const topicArn = queryUser.topico;
       await publishToSNSTopic(
         topicArn, 
-        `Venda efetuada com sucesso! \nCLIENTE: ${name}\nCPF: ${cpf}\nEMAIL: ${email}\nProduto: ${queryProduct.name}\nQuantidade: ${quantity}\nPreço total: R$ ${totalPrice}\nVendedor: ${queryUser.name}`, 
+        `Venda efetuada com sucesso! \nCLIENTE: ${name}\nCPF: ${cpf}\nEMAIL: ${email}\nPRODUTO: ${queryProduct.name}\nQUANTIDADE: ${quantity}\nPREÇO TOTAL: R$ ${totalPrice}\nVENDEDOR: ${queryUser.name}`, 
         `Notificação de Venda ID: ${sale.id}` // Agora, a interpolação está correta
       );
 
